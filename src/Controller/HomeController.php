@@ -19,6 +19,6 @@ final class HomeController extends AbstractController
     #[Route('/', name: 'chao')]
     public function chao(): Response
     {
-        return new Response('Bonjour');
+        return new Response('Bonjour'.$_GET['name']);
     }
 }
