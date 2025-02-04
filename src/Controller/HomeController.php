@@ -16,7 +16,7 @@ final class HomeController extends AbstractController
             'controller_name' => 'HomeController',
         ]);
     }
-   
+    #[Route('/', name: 'chao')]
     public function chao(): Response
     {
         return new Response('Bonjour');
