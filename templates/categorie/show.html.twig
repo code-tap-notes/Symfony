@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}LIST CATEGORIE!{% endblock %}
+{% block title %}SHOW CATEGORIE!{% endblock %}
 
 {% block body %}
 <style>
@@ -9,12 +9,12 @@
 </style>
 
 <div class="example-wrapper">
-    <h1>Hello ✅</h1>
+    <h1>Show categorie ✅</h1>
 
-    This friendly message is coming from:
+    
     <ul>
-        <li> id</li>
-        <li> Loai</li>
+        <li> {{id}}</li>
+        <li> {{slug}} </li>
     </ul>
 </div>
 {% endblock %}
