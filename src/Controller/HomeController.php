@@ -19,7 +19,7 @@ final class HomeController extends AbstractController
     #[Route('/', name: 'chao')]
     public function chao(Request $request): Response
     {
-        dd($request);
+        
         return new Response('Bonjour'.$request->query->get('name',' my best client'));
     }
 }
