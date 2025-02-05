@@ -4,7 +4,7 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Attribute\Route;
 
 final class HomeController extends AbstractController
@@ -17,8 +17,8 @@ final class HomeController extends AbstractController
         ]);
     }
     #[Route('/', name: 'chao')]
-    public function chao(): Response
+    public function chao(Request $request): Response
     {
-        return new Response('Bonjour'.$_GET['name']);
+        return new Response('Bonjour'.$request->query->get('name'));
     }
 }
