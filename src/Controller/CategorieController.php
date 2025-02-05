@@ -17,7 +17,7 @@ final class CategorieController extends AbstractController
     #[Route('/categorie/{slug}-{id}', name: 'categorie.show', requirements: ['id' => '\d+','slug' => '[a-z0-9-]+'])]
     public function show(request $request, string $slug, int $id): Response
     {
-        return NEW jsonResponse([
+        return $this->json([
             'slug' => $slug
         ]);
         return new Response('Categorie'.$slug);
