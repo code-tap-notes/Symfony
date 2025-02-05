@@ -11,6 +11,6 @@ final class CategorieController extends AbstractController
     #[Route('/categorie/{slug}-{id}', name: 'categorie.show')]
     public function index(request $request): Response
     {
-        dd($request);
+        dd($request->attributes->get('slug'),$request->attributes->get('id'));
     }
 }
