@@ -1,19 +1,31 @@
 <?php
 
 namespace App\Controller;
-
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\HttpFoundation\Request;
 use App\Repository\RecipeRepository;
 
+
 final class RecipeController extends AbstractController
 {
     #[Route('/recipes', name: 'recipe.index')]
-    public function index(Request $request, RecipeRepository $repository): Response
+    public function index(Request $request, RecipeRepository $repository, EntityManagerInterface $em): Response
     {
         $recipes = $repository->findAll();
+        $recipes[3]->setTitle('Nem a la viande');
+        $em->flush(); 
+        // Ham nay luu lai thya doi trong co so du lieu 
+        return $this->render('recipe/index.html.twig', [
+            'recipes' => $recipes
+        ]);
+    }
+    #[Route('/recipes/rapid', name: 'recipe.rapid')]
+    public function indexRapid(Request $request, RecipeRepository $repository): Response
+    {
+        $recipes = $repository->findWithDurationLowerThan(21);
         return $this->render('recipe/index.html.twig', [
             'recipes' => $recipes
         ]);
