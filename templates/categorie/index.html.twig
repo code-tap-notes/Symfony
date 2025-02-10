@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}LIST CATEGORIE!{% endblock %}
+{% block title "LIST CATEGORIE!" %}
 
 {% block body %}
 <style>
@@ -9,12 +9,15 @@
 </style>
 
 <div class="example-wrapper">
-    <h1>Hello ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li> id</li>
-        <li> Loai</li>
-    </ul>
+    <h1>Categories</h1>
+<ul>
+    {% for categorie in categories %}
+        <li><a href="{{ path('categorie.show',{code: categorie.Code, id:categorie.id}) }}">
+                {{ categorie.Code }}
+            </a>
+        </li>
+        <li>{{ categorie.getDescription()|e }}</li>
+    {% endfor %}
+</ul>
 </div>
 {% endblock %}

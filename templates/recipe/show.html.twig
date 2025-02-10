@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title "SHOW CATEGORIE: "   %}
+{% block title "SHOW RECIPE: "   %}
 
 {% block body %}
 <style>
@@ -9,13 +9,13 @@
 </style>
 
 <div class="example-wrapper">
-    <h1>Show categorie ✅</h1>
+    <h1>Show recipe ✅</h1>
 
     
     <ul>
-        <li> {{categorie.getid()}}</li>
-        <li>{{ categorie.getCode()}} </li>
-        <li>{{ categorie.getDescription() }} </li>
+        <li> {{recipe.getid()}}</li>
+        <li>{{ recipe.getSlug()}} </li>
+        <li>{{ recipe.getContent() }} </li>
     </ul>
 </div>
 {% endblock %}

@@ -22,8 +22,8 @@
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav">
         <a class="nav-link {{app.current_route == 'home'?'active':''}}" aria-current="page" href="{{url ('home')}}">Home</a>
-        <a class="nav-link {{app.current_route starts with 'categorie'?'active':''}}" href="http://localhost:8000/categorie/phongdoi-delux-1">Categorie</a>
-        <a class="nav-link" href="http://localhost:8000/categorie/phongdoi-delux-1">Show</a>
+        <a class="nav-link {{app.current_route starts with 'categories'?'active':''}}" href="http://localhost:8000/categories">Categorie</a>
+        <a class="nav-link {{app.current_route starts with 'recipes'?'active':''}}" href="http://localhost:8000/recipes"> Recipe Restaurant</a>
         <a class="nav-link disabled" aria-disabled="true">Disabled</a>
       </div>
     </div>
