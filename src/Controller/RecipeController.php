@@ -7,6 +7,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\HttpFoundation\Request;
 use App\Repository\RecipeRepository;
+use Symfony\Entity\Recipe;
 
 
 final class RecipeController extends AbstractController
