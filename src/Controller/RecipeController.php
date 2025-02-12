@@ -7,7 +7,8 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\HttpFoundation\Request;
 use App\Repository\RecipeRepository;
-use Symfony\Entity\Recipe;
+use App\Entity\Recipe;
+use App\Form\RecipeType;
 
 
 final class RecipeController extends AbstractController
@@ -46,5 +47,13 @@ final class RecipeController extends AbstractController
                 'recipe' => $recipe
         ]);
         
+    }
+    #[Route('/recipes/{id}/edit',name: 'recipe.edit')]
+    public function edit(Recipe $recipe) {
+        $form = $this->createForm(RecipeType::class, $recipe);
+        return $this->render('recipe/edit.html.twig',[
+            'recipe' => $recipe,
+            'form' => $form
+        ]);
     }
 }
