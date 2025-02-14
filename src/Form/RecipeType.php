@@ -6,7 +6,7 @@ use App\Entity\Recipe;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 class RecipeType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
@@ -26,7 +26,8 @@ class RecipeType extends AbstractType
             ->add('ProteinesByGame')
             ->add('graissesByGame')
             ->add('kcal')
-        ;
+            ->add('save', SubmitType::class,['label' => 'Envoyer'])
+       ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void
