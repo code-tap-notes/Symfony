@@ -14,13 +14,10 @@ use App\Form\RecipeType;
 final class RecipeController extends AbstractController
 {
     #[Route('/recipes', name: 'recipe.index')]
-    public function index(Request $request, RecipeRepository $repository, EntityManagerInterface $em): Response
+    public function index(Request $request, RecipeRepository $repository): Response
     {
         $recipes = $repository->findAll();
-        $recipes[3]->setTitle('Nem a la viande');
-        $em->flush(); 
-        // Ham nay luu lai thya doi trong co so du lieu 
-        return $this->render('recipe/index.html.twig', [
+            return $this->render('recipe/index.html.twig', [
             'recipes' => $recipes
         ]);
     }
