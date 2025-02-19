@@ -10,13 +10,18 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilder;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\Event\PreSubmitEvent;
+use Symfony\Component\Form\Event\PostSubmitEvent;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\String\Slugger\AsciiSlugger;
 class RecipeType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add('Title')
-            ->add('slug')
+            ->add('slug', TextType::class, [
+                'required' =>false
+            ])
             ->add('content')
             ->add('createdAt', null, [
                 'widget' => 'single_text',
@@ -31,17 +36,30 @@ class RecipeType extends AbstractType
             ->add('kcal')
             ->add('save', SubmitType::class,['label' => 'Envoyer'])
             ->addEventListener(FormEvents::PRE_SUBMIT, $this->autoSlug(...))
+            ->addEventListener(formEvents::POST_SUBMIT, $this->attachTimestamps(...) )
        ;
     }
     //Tạo slug tự động từ title
     public function autoSlug(PreSubmitEvent $event): void
     {
         $data = $event->getData();
-        if(empty($data['slug'])) 
+        if (empty($data['slug'])) 
         {
             $slugger = new AsciiSlugger();
-            $data['slug'] = strtolower($slugger->slug($data['title']));
+            $data['slug'] = strtolower($slugger->slug($data['Title']));
             $event->setData($data);
+        }
+
+    }
+    public function attachTimestamps(PostSubmitEvent $event): void
+    {
+        $data = $event->getData();
+        if(!($data instanceof Recipe)){
+            return;
+        }
+        $data->setUpdatedAt(new \DateTimeImmutable());
+        if (!($data->getId())){
+            $data->setCreatedAt(new \DateTimeImmutable());
         }
 
     }
