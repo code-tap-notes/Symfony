@@ -13,6 +13,9 @@ use Symfony\Component\Form\Event\PreSubmitEvent;
 use Symfony\Component\Form\Event\PostSubmitEvent;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\String\Slugger\AsciiSlugger;
+use Symfony\Component\Validator\Constraints\Regex;
+use Symfony\Component\Validator\Constraints\Length;
+
 class RecipeType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
@@ -20,7 +23,14 @@ class RecipeType extends AbstractType
         $builder
             ->add('Title')
             ->add('slug', TextType::class, [
-                'required' =>false
+                'required' =>false,
+                'constraints' => [
+                    new Length(min: 5),
+                    new Regex([
+                        'pattern' => '/^[a-zA-Z0-9-]+$/',
+                        'message' => 'Le slug d’utilisateur ne peut contenir que des lettres, des chiffres et des tirets.',
+                    ])
+                ]
             ])
             ->add('content')
             ->add('createdAt', null, [
