@@ -21,14 +21,14 @@ class Recipe
     #[ORM\Column(length: 255)]
     #[Assert\Length(min: 5, groups: ['Extra'])]
     #[BanWord(groups:['Extra'])]
-    private ?string $Title = null;
-
+   // private ?string $Title = null;
+    private string $Title = '';
     #[ORM\Column(length: 255)]
-    private ?string $slug = null;
+    private string $slug = '';
 
     #[ORM\Column(type: Types::TEXT)]
-    private ?string $content = null;
-
+    //private ?string $content = null;
+    private string $content = '';
     #[ORM\Column]
     private ?\DateTimeImmutable $createdAt = null;
 
@@ -58,7 +58,7 @@ class Recipe
         return $this->id;
     }
 
-    public function getTitle(): ?string
+    public function getTitle(): string
     {
         return $this->Title;
     }
@@ -70,7 +70,7 @@ class Recipe
         return $this;
     }
 
-    public function getSlug(): ?string
+    public function getSlug(): string
     {
         return $this->slug;
     }
@@ -82,7 +82,7 @@ class Recipe
         return $this;
     }
 
-    public function getContent(): ?string
+    public function getContent(): string
     {
         return $this->content;
     }

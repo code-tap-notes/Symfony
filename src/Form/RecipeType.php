@@ -12,6 +12,7 @@ use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\Event\PreSubmitEvent;
 use Symfony\Component\Form\Event\PostSubmitEvent;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\String\Slugger\AsciiSlugger;
 use Symfony\Component\Validator\Constraints\Regex;
 use Symfony\Component\Validator\Constraints\Length;
@@ -21,7 +22,9 @@ class RecipeType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('Title')
+            ->add('Title', TextType::class, [
+                'empty_data' => ''
+            ])
             ->add('slug', TextType::class, [
                 'required' =>false,
                 'constraints' => [
@@ -32,7 +35,9 @@ class RecipeType extends AbstractType
                     ])
                 ]
             ])
-            ->add('content')
+            ->add('content', TextareaType::class, [
+                'empty_data' => ''
+            ])
             ->add('createdAt', null, [
                 'widget' => 'single_text',
             ])
