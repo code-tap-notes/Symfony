@@ -19,7 +19,8 @@ class Recipe
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    #[Assert\Length(min: 5)]
+    #[Assert\Length(min: 5, groups: ['Extra'])]
+    #[BanWord(groups:['Extra'])]
     private ?string $Title = null;
 
     #[ORM\Column(length: 255)]
