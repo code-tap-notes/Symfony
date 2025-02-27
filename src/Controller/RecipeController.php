@@ -17,7 +17,9 @@ final class RecipeController extends AbstractController
     #[Route('/demo')]
     public function demo(ValidatorInterface $validator)
     {
-        dd($validator);
+        $recipe = new Recipe();
+        $errors = $validator->validate($recipe);
+        dd((string)$errors);
     }
 
     #[Route('/recipes', name: 'recipe.index')]
