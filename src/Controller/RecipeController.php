@@ -10,13 +10,15 @@ use Symfony\Component\HttpFoundation\Request;
 use App\Repository\RecipeRepository;
 use App\Entity\Recipe;
 use App\Form\RecipeType;
+use App\Demo;
 
 
 final class RecipeController extends AbstractController
 {
     #[Route('/demo')]
-    public function demo(ValidatorInterface $validator)
+    public function demo(Demo $demo)
     {
+        dd($demo);
         $recipe = new Recipe();
         $errors = $validator->validate($recipe);
         dd((string)$errors);
